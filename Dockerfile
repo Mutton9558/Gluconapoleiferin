@@ -13,4 +13,4 @@ RUN npm install -g express
 
 EXPOSE 8080
 
-CMD ["sh", "-c", "node keepalive.js & python bot.py"]
+CMD ["sh", "-c", "node index.js & python bot.py"]
