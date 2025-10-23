@@ -4,6 +4,7 @@ import json
 import aiohttp
 import asyncio
 import discord
+from urllib.parse import urlparse
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -17,6 +18,10 @@ client = discord.Client(intents=intents)
 
 # Queue for background scans
 scan_queue = asyncio.Queue()
+
+with open("whitelisted.json", "r") as f:
+    data = json.loads(f)
+    domainList = data["domains"]
 
 async def scan_link(link):
     scan_url = "https://www.virustotal.com/api/v3/urls"
@@ -62,13 +67,16 @@ async def scan_worker():
         content = message.content
         author = message.author
         channel = message.channel
-
+        
         urls = re.findall(r"http\S+", content)
         for url in urls:
-            if not url.startswith("https"):
-                malicious = True
-            else:
-                malicious = await scan_link(url)
+            malicious = False
+            domain = urlparse(url).netloc
+            if domain not in domainList:
+                if not url.startswith("https"):
+                    malicious = True
+                else:
+                    malicious = await scan_link(url)
 
             if malicious:
                 try:
