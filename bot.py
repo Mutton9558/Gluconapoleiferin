@@ -20,7 +20,7 @@ client = discord.Client(intents=intents)
 scan_queue = asyncio.Queue()
 
 with open("whitelisted.json", "r") as f:
-    data = json.loads(f)
+    data = json.load(f)
     domainList = data["domains"]
 
 async def scan_link(link):
