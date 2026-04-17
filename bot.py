@@ -16,6 +16,33 @@ intents = discord.Intents.default()
 intents.message_content = True
 client = discord.Client(intents=intents)
 
+YUSUF_PLEASE_DONT_SAY_THESE = {
+    "kms", 
+    "kill myself"
+    "ending my life", 
+    "killing myself", 
+    "jump off the roof", 
+    "jump off the building", 
+    "ending it all", 
+    "mmu", 
+    "jump off a building", 
+    "jump off a balcony", 
+    "jump off the balcony", 
+    "beating myself", 
+    "shoot myself", 
+    "shooting myself",
+    "jumping off the balcony",
+    "jumping off the building",
+    "jumping off the roof",
+    "jumping off a balcony",
+    "jumping off a building",
+    "jumping off the twin towers",
+    "jumping off klcc",
+    "jumping off trx",
+    "drive into other people",
+    "off a building i go"
+    }
+
 # Queue for background scans
 scan_queue = asyncio.Queue()
 
@@ -96,6 +123,11 @@ async def on_message(message):
     if "http" in message.content:
         await scan_queue.put(message)
         print(f"Queued message from {message.author} for scanning.")
+    else:
+        words = message.content.lower()
+
+        if any(phrase in words for phrase in YUSUF_PLEASE_DONT_SAY_THESE):
+            await message.channel.send(f"User <@{message.author.id}> needs a therapist rn.")
 
 @client.event
 async def on_ready():
