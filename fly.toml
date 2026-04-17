@@ -1,7 +1,7 @@
 # fly.toml for Discord bot
 
 app = "gluconapoleiferin-divine-paper-9646"
-primary_region = "sin"
+primary_region = "iad"
 
 [build]
   # optional: specify a builder if needed
@@ -19,6 +19,6 @@ primary_region = "sin"
   processes = ["app"]
 
 [[vm]]
-memory = "1gb"
+memory = "256mb"
 cpu_kind = "shared"
 cpus = 1

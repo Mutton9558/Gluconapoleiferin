@@ -18,7 +18,7 @@ client = discord.Client(intents=intents)
 
 YUSUF_PLEASE_DONT_SAY_THESE = {
     "kms", 
-    "kill myself"
+    "kill myself",
     "ending my life", 
     "killing myself", 
     "jump off the roof", 
