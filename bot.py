@@ -24,7 +24,6 @@ YUSUF_PLEASE_DONT_SAY_THESE = {
     "jump off the roof", 
     "jump off the building", 
     "ending it all", 
-    "mmu", 
     "jump off a building", 
     "jump off a balcony", 
     "jump off the balcony", 
